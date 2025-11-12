@@ -866,10 +866,9 @@
         <div class="video-overlay"></div>
     </div>
 
-    <!-- 新的加载动画 -->
     <div id="loading-screen">
         <div class="loading-logo">音黎工具箱</div>
-        <div class="loading-subtitle">所有资源免费分享，不采取任何支付费用</div>
+        <div class="loading-subtitle">免费资源分享，不采取任何支付费用</div>
         <div class="loading-animation">
             <div class="loading-circle"></div>
             <div class="loading-inner"></div>
@@ -888,7 +887,8 @@
             </div>
             <div class="modal-body">
                 <p>资源统一放在123云盘，软件被屏蔽的话就放小飞机云盘。</p>
-                <p>网盘密码请徒步到我们的公众号或者私信音黎获取，资源全部免费分享不收取任何费用。</p>
+                <p>如果对玩机感兴趣但又是新手小白，不如加入我们的交流群吧，群里主打交流玩机技巧和实用软件分享。</p>
+                <p>网盘密码请徒步到我们的公众号或者群里进行查看，资源全部免费分享不收取任何费用。</p>
                 <p>谢谢你的到来。</p>
             </div>
             <div class="modal-footer">
@@ -952,8 +952,8 @@
 
             <div class="tool-card" data-link="https://share.feijipan.com/s/sfPLWKFV" data-password="2580">
                 <div class="tool-icon"><i class="fas fa-robot"></i></div>
-                <div class="tool-title">崩铁3.7单机版</div>
-                <div class="tool-desc">崩坏：星穹铁道3.7单机版本</div>
+                <div class="tool-title">崩铁3.6单机版</div>
+                <div class="tool-desc">崩坏：星穹铁道3.6单机版本</div>
                 <div class="tool-password"><i class="fas fa-lock"></i></div>
             </div>
 
@@ -1065,75 +1065,163 @@
     </div>
 
     <script>
-        // 新的加载动画逻辑
+        // 欢迎弹窗的逻辑（单独封装）
+        function showWelcomeModal() {
+            // 检查是否第一次访问 (使用 localStorage，永久)
+            if (!localStorage.getItem('hasVisited')) {
+                setTimeout(function() {
+                    const modal = document.getElementById('welcome-modal');
+                    modal.classList.add('active');
+                    
+                    // 设置5秒后自动关闭
+                    const autoClose = setTimeout(function() {
+                        closeWelcomeModal();
+                    }, 5000);
+                    
+                    // 点击确认按钮关闭
+                    document.getElementById('read-confirm').addEventListener('click', function() {
+                        clearTimeout(autoClose);
+                        closeWelcomeModal();
+                    });
+                }, 500); // 延迟 500ms 弹出
+            }
+        }
+
+        // 关闭欢迎弹窗
+        function closeWelcomeModal() {
+            document.getElementById('welcome-modal').classList.remove('active');
+            localStorage.setItem('hasVisited', 'true');
+        }
+
+        // 页面加载主逻辑
         document.addEventListener('DOMContentLoaded', function() {
+
+            // --- 
+            // 
+            // 
+            // 
+            //           
+            //           
+            //  **【 你要求的代码已添加在这里 】** // 
+            // 
+            // 
+            // 
+            // 
+            //           
+            //           
+            // ---
+            
+            // 1. 检测设备是手机端还是电脑端
+            const isPC = !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            // 2. 如果是电脑端，则替换资源
+            if (isPC) {
+                // 替换加载背景图为 IMG_20251003_123818.png
+                const loadingScreenEl = document.getElementById('loading-screen');
+                if (loadingScreenEl) {
+                    loadingScreenEl.style.backgroundImage = "url('IMG_20251003_123818.png')";
+                }
+                
+                // 替换页面背景为 yileina.mp4
+                const videoSource = document.querySelector('#bg-video source');
+                if (videoSource) {
+                    videoSource.setAttribute('src', 'yileina.mp4');
+                    // 重新加载视频以应用新的源
+                    document.getElementById('bg-video').load();
+                }
+            }
+            // --- 
+            // 
+            // 
+            // 
+            //           
+            //           
+            // **【 以上是新添加的代码 】** // 
+            // 
+            // 
+            // 
+            // 
+            //           
+            //           
+            // ---
+
+            
             const loadingScreen = document.getElementById('loading-screen');
-            const loadingProgressBar = document.getElementById('loading-progress-bar');
-            const loadingPercentage = document.getElementById('loading-percentage');
-            const loadingTips = document.getElementById('loading-tips');
             const mainContent = document.getElementById('main-content');
             
-            // 加载提示语
-            const tips = [
-                "正在初始化应用...",
-                "加载资源库...",
-                "准备工具组件...",
-                "优化用户体验...",
-                "即将完成..."
-            ];
-            
-            // 模拟加载进度
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 10;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    
-                    // 加载完成后显示主界面
-                    setTimeout(() => {
-                        loadingScreen.classList.add('hidden');
-                        mainContent.style.display = 'block';
+            // 检查 sessionStorage 中是否已有加载标记
+            if (sessionStorage.getItem('hasLoadedThisSession') === 'true') {
+                // --- 如果本会话已加载过 ---
+                
+                // 1. 立即隐藏加载动画
+                loadingScreen.style.display = 'none'; // 直接隐藏，不使用渐变
+                
+                // 2. 立即显示主内容
+                mainContent.style.display = 'block';
+                
+                // 3. 检查是否需要显示欢迎弹窗
+                showWelcomeModal();
+                
+            } else {
+                // --- 如果是本会话第一次加载 ---
+                
+                // 1. 运行加载动画
+                const loadingProgressBar = document.getElementById('loading-progress-bar');
+                const loadingPercentage = document.getElementById('loading-percentage');
+                const loadingTips = document.getElementById('loading-tips');
+                
+                const tips = [
+                    "正在初始化应用...",
+                    "加载资源库...",
+                    "准备工具组件...",
+                    "优化用户体验...",
+                    "即将完成..."
+                ];
+                
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 10;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
                         
-                        // 检查是否第一次访问
-                        if (!localStorage.getItem('hasVisited')) {
-                            setTimeout(function() {
-                                document.getElementById('welcome-modal').classList.add('active');
-                                
-                                // 设置5秒后自动关闭
-                                const autoClose = setTimeout(function() {
-                                    closeWelcomeModal();
-                                }, 5000);
-                                
-                                // 点击确认按钮关闭
-                                document.getElementById('read-confirm').addEventListener('click', function() {
-                                    clearTimeout(autoClose);
-                                    closeWelcomeModal();
-                                });
-                            }, 500);
-                        }
-                    }, 500);
-                }
-                
-                // 更新进度条和百分比
-                loadingProgressBar.style.width = `${progress}%`;
-                loadingPercentage.textContent = `${Math.floor(progress)}%`;
-                
-                // 更新提示语
-                if (progress < 20) {
-                    loadingTips.textContent = tips[0];
-                } else if (progress < 40) {
-                    loadingTips.textContent = tips[1];
-                } else if (progress < 60) {
-                    loadingTips.textContent = tips[2];
-                } else if (progress < 80) {
-                    loadingTips.textContent = tips[3];
-                } else {
-                    loadingTips.textContent = tips[4];
-                }
-            }, 200);
+                        // 加载完成后
+                        setTimeout(() => {
+                            // 2. 渐变隐藏加载动画
+                            loadingScreen.classList.add('hidden');
+                            
+                            // 3. 显示主内容
+                            mainContent.style.display = 'block';
+                            
+                            // 4. 设置会话标记，表示已加载过
+                            sessionStorage.setItem('hasLoadedThisSession', 'true');
+                            
+                            // 5. 检查是否需要显示欢迎弹窗
+                            showWelcomeModal();
+                        }, 500);
+                    }
+                    
+                    // 更新进度条和百分比
+                    loadingProgressBar.style.width = `${progress}%`;
+                    loadingPercentage.textContent = `${Math.floor(progress)}%`;
+                    
+                    // 更新提示语
+                    if (progress < 20) {
+                        loadingTips.textContent = tips[0];
+                    } else if (progress < 40) {
+                        loadingTips.textContent = tips[1];
+                    } else if (progress < 60) {
+                        loadingTips.textContent = tips[2];
+                    } else if (progress < 80) {
+                        loadingTips.textContent = tips[3];
+                    } else {
+                        loadingTips.textContent = tips[4];
+                    }
+                }, 200);
+            }
 
-            // 保留原有的其他功能逻辑
+            // --- 页面其他功能 (不受加载逻辑影响) ---
+
             // 工具卡片点击事件
             document.querySelectorAll('.tool-card, .bilibili-card').forEach(card => {
                 card.addEventListener('click', function() {
@@ -1161,7 +1249,7 @@
                 const input = document.getElementById('password-input').value;
                 
                 if (input === currentPassword) {
-                    // 密码正确 - 修复：传递currentLink参数
+                    // 密码正确
                     showPasswordFeedback(true, currentLink);
                 } else {
                     // 密码错误
@@ -1232,19 +1320,13 @@
             if (isCorrect) {
                 feedback.classList.add('correct');
                 feedback.classList.remove('incorrect');
-                icon.classList.add('correct');
-                icon.classList.remove('incorrect');
-                icon.className = 'feedback-icon correct';
-                icon.innerHTML = '<i class="fas fa-check-circle"></i>';
+                icon.className = 'feedback-icon correct fas fa-check-circle';
                 text.textContent = '密码正确';
                 desc.textContent = '正在为您跳转...';
             } else {
                 feedback.classList.add('incorrect');
                 feedback.classList.remove('correct');
-                icon.classList.add('incorrect');
-                icon.classList.remove('correct');
-                icon.className = 'feedback-icon incorrect';
-                icon.innerHTML = '<i class="fas fa-times-circle"></i>';
+                icon.className = 'feedback-icon incorrect fas fa-times-circle';
                 text.textContent = '密码错误';
                 desc.textContent = '请重新输入密码';
                 
@@ -1263,18 +1345,11 @@
                 feedback.classList.remove('active');
                 
                 if (isCorrect && link) {
-                    // 关键修复：正确密码验证后直接跳转
                     window.open(link, '_blank');
                     document.getElementById('password-modal').classList.remove('active');
                     document.getElementById('password-input').value = '';
                 }
             }, isCorrect ? 1500 : 2000);
-        }
-        
-        // 关闭欢迎弹窗
-        function closeWelcomeModal() {
-            document.getElementById('welcome-modal').classList.remove('active');
-            localStorage.setItem('hasVisited', 'true');
         }
     </script>
 </body>
