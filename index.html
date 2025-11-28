@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="音黎工具箱 - 免费资源分享平台，提供游戏资源、软件工具和在线工具的免费下载和分享。">
+    <meta name="keywords" content="音黎工具箱, 免费资源分享, 游戏资源, 软件工具, 在线工具, 原神, 崩铁, Windows激活教程, 临时邮箱">
+    <meta name="author" content="音黎">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="音黎工具箱">
+    <meta property="og:description" content="免费资源分享平台，提供各种游戏、软件和在线工具的免费资源。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-website-url.com"> 
+    <meta property="og:image" content="https://your-website-url.com/IMG_20251107_203519.png"> 
+    <title>音黎工具箱</title>
+    
+    <link rel="preload" href="mmexport1762503261089.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="IMG_20251107_203519.png" as="image">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <link rel="icon" href="IMG_20251107_203519.png" type="image/png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "音黎工具箱",
+      "description": "免费资源分享平台，提供游戏资源、软件工具和在线工具的免费下载和分享",
+      "url": "https://your-website-url.com",
+      "applicationCategory": "UtilitiesApplication"
+    }
+    </script>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video" playsinline>
+            <source src="mmexport1762503261089.mp4" type="video/mp4">
+            您的浏览器不支持视频标签。
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <div id="loading-screen">
+        <div class="loading-logo">音黎工具箱</div>
+        <div class="loading-subtitle">免费资源分享，不采取任何支付费用</div>
+        <div class="loading-animation">
+            <div class="loading-circle"></div>
+            <div class="loading-inner"></div>
+        </div>
+        <div class="loading-progress-container">
+            <div class="loading-progress-bar" id="loading-progress-bar"></div>
+        </div>
+        <div class="loading-percentage" id="loading-percentage">0%</div>
+        <div class="loading-tips" id="loading-tips">正在初始化应用...</div>
+    </div>
+
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>欢迎来到音黎工具箱</h2>
+            </div>
+            <div class="modal-body">
+                <p>资源统一放在123云盘，软件被屏蔽的话就放小飞机云盘。</p>
+                <p>网盘密码请徒步到我们的公众号或私信音黎获取，资源全部免费分享不收取任何费用。</p>
+                <p>谢谢你的到来。</p>
+            </div>
+            <div class="modal-footer">
+                <button id="read-confirm" class="neon-btn">已阅读</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="password-modal" class="modal">
+        <div class="password-content">
+            <div class="password-header">
+                <h3>安全验证</h3>
+                <p>请输入密码访问此资源</p>
+            </div>
+            <div class="password-input-container">
+                <input type="password" class="password-input" id="password-input" placeholder="请输入访问密码...">
+            </div>
+            <div class="password-buttons">
+                <button class="password-btn neon-btn-secondary" id="password-cancel">取消</button>
+                <button class="password-btn neon-btn" id="password-submit">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="password-feedback" id="password-feedback">
+        <div class="feedback-icon" id="feedback-icon"></div>
+        <div class="feedback-text" id="feedback-text"></div>
+        <div class="feedback-desc" id="feedback-desc"></div>
+    </div>
+
+    <!-- 移动端布局 (第二个网页的透明卡片UI) -->
+    <div class="layout-mobile" id="main-content-mobile" style="display: none;">
+        <div class="bc_content">
+            <div class="bc-fluid">
+                <div class="bc-row bc-space10">
+                    <div class="bc-xs12 bc-sm6 bc-md6 bc-lg6">
+                        <div class="bc_mbl bc_box" id="bc_mobile_head">
+                            <div class="bc-row">
+                                <div class="bc-xs3">
+                                    <img class="bc_mbl bc_box img-avatar" src="IMG_20251107_203519.png" alt="音黎">
+                                </div>
+                                <div class="bc-xs9">
+                                    <div class="bc-xs12">
+                                        <div id="bc_name">音黎工具箱</div>
+                                        <div id="bc_tip">Tips：资源全部免费分享，不采取任何支付费用！</div>
+                                    </div>
+                                    <span id="localtime"></span>
+                                    <div class="bc-xs12" style="margin-top:5px;">
+                                        <a class="btn btn-blue">完全免费</a>
+                                        <a class="btn btn-green">持续更新</a>
+                                        <a class="btn btn-purple">安全无毒</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bc-xs6 bc-sm3 bc-md3 bc-lg3">
+                        <div class="bc_box bc_mbl bc_center" onclick="safeOpenLink('https://b23.tv/XWhCTXW')" style="cursor:pointer;">
+                            <i class="fab fa-bilibili" style="font-size:1.5rem; color:#fb7299;"></i>
+                            <span style="color:#FFF; display:block; margin-top:5px;">Bilibili</span>
+                        </div>
+                    </div>
+                    <div class="bc-xs6 bc-sm3 bc-md3 bc-lg3">
+                        <div class="bc_box bc_mbl bc_center" style="cursor:pointer;">
+                            <i class="fas fa-comment-dots" style="font-size:1.5rem; color:#07c160;"></i>
+                            <span style="color:#FFF; display:block; margin-top:5px;">微信公众号搜索音黎</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bc-row bc-space10">
+                    <div class="bc-xs12">
+                        <div class="bc_box bc_mbl">
+                            <div class="bc-row">
+                                <h3 class="bc-xs12 bc_box">
+                                    <i class="fas fa-gamepad" style="margin-right:5px;"></i> 游戏资源下载
+                                </h3>
+                                <hr>
+                            </div>
+                            <div class="bc-row bc-space10">
+                                <a href="javascript:;" onclick="unlock('genshin61')" class="bc-xs6 bc-sm4 bc-md3 bc-lg2">
+                                    <div class="bc_a btn-blue bc_center">
+                                        <i class="fas fa-dragon"></i> 原神 <i class="fas fa-lock" style="font-size:0.8em; opacity:0.7;"></i>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="unlock('hsr37')" class="bc-xs6 bc-sm4 bc-md3 bc-lg2">
+                                    <div class="bc_a btn-blue bc_center">
+                                        <i class="fas fa-robot"></i> 星穹铁道 <i class="fas fa-lock" style="font-size:0.8em; opacity:0.7;"></i>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="unlock('blue_archive')" class="bc-xs6 bc-sm4 bc-md3 bc-lg2">
+                                    <div class="bc_a btn-blue bc_center">
+                                        <i class="fas fa-school"></i> 蔚蓝档案 <i class="fas fa-lock" style="font-size:0.8em; opacity:0.7;"></i>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="safeOpenLink('https://ys.mihoyo.com/cloud/m/#/')" class="bc-xs6 bc-sm4 bc-md3 bc-lg2">
+                                    <div class="bc_a btn-green bc_center">
+                                        <i class="fas fa-cloud"></i> 云·原神
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="safeOpenLink('https://mc.js.cool/')" class="bc-xs6 bc-sm4 bc-md3 bc-lg2">
+                                    <div class="bc_a btn-green bc_center">
+                                        <i class="fas fa-cube"></i> MC网页版
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="safeOpenLink('https://store.steampowered.com')" class="bc-xs6 bc-sm4 bc-md3 bc-lg2">
+                                    <div class="bc_a btn-green bc_center">
+                                        <i class="fab fa-steam"></i> Steam官网
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bc-row bc-space10">
+                    <div class="bc-xs12 bc-sm6">
+                        <div class="bc_box bc_mbl">
+                            <div class="bc-row">
+                                <h3 class="bc-xs12 bc_box">
+                                    <i class="fas fa-tools" style="margin-right:5px;"></i> 软件工具
+                                </h3>
+                                <hr>
+                            </div>
+                            <div class="bc-row bc-space10">
+                                <a href="javascript:;" onclick="unlock('resources_share')" class="bc-xs6">
+                                    <div class="bc_a btn-purple bc_center">
+                                        <i class="fas fa-folder-open"></i> 资源合集 <i class="fas fa-lock"></i>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="safeOpenLink('https://share.feijipan.com/s/TePL325s')" class="bc-xs6">
+                                    <div class="bc_a btn-yellow bc_center">
+                                        <i class="fab fa-windows"></i> Win激活
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="safeOpenLink('https://share.feijipan.com/s/uQPLbBft')" class="bc-xs6">
+                                    <div class="bc_a btn-yellow bc_center">
+                                        <i class="fas fa-tools"></i> VPN翻墙
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="safeOpenLink('https://share.feijipan.com/s/AAPL1NSG')" class="bc-xs6">
+                                    <div class="bc_a btn-yellow bc_center">
+                                        <i class="fab fa-tiktok"></i> TikTok测试
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="safeOpenLink('https://www.123912.com/s/I7DsTd-oYhJ3')" class="bc-xs6">
+                                    <div class="bc_a btn-yellow bc_center">
+                                        <i class="fas fa-walking"></i> 步数模拟
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bc-xs12 bc-sm6">
+                        <div class="bc_box bc_mbl">
+                            <div class="bc-row">
+                                <h3 class="bc-xs12 bc_box">
+                                    <i class="fas fa-globe" style="margin-right:5px;"></i> 在线工具
+                                </h3>
+                                <hr>
+                            </div>
+                            <div class="bc-row bc-space10">
+                                <a href="javascript:;" onclick="safeOpenLink('http://24mail.chacuo.net/')" class="bc-xs4">
+                                    <div class="bc_a btn-green bc_center">
+                                        <i class="fas fa-envelope"></i> 临时邮箱
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="safeOpenLink('https://zuoyinyun.com/tool/id-card')" class="bc-xs4">
+                                    <div class="bc_a btn-green bc_center">
+                                        <i class="fas fa-id-card"></i> 身份生成
+                                    </div>
+                                </a>
+                                <a href="javascript:;" onclick="safeOpenLink('https://lubansms.com')" class="bc-xs4">
+                                    <div class="bc_a btn-green bc_center">
+                                        <i class="fas fa-sms"></i> 接码平台
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bc-row bc-space10">
+                    <div class="bc-xs12">
+                        <div class="bc_mbl bc_box" id="bc_foot">
+                            <p>Copyright © 2025 音黎工具箱</p>
+                            <p style="font-size:12px; opacity:0.7;">资源来自 123云盘 / 小飞机云盘</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 桌面端布局 (第一个网页的原有UI) -->
+    <div class="layout-desktop" id="main-content-desktop" style="display: none;">
+        <div class="container">
+            <header>
+                <div class="logo-container">
+                    <i class="fas fa-toolbox logo-icon"></i>
+                    <div class="logo">音黎工具箱</div>
+                </div>
+                <div class="subtitle">资源全部免费分享，不采取任何支付费用</div>
+            </header>
+
+            <div class="bilibili-section">
+                <div class="bilibili-card" onclick="safeOpenLink('https://b23.tv/XWhCTXW')">
+                    <i class="fab fa-bilibili bilibili-icon"></i>
+                    <div class="bilibili-info">
+                        <h3>哔哩哔哩视频号</h3>
+                        <p>本人B站账号</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-title">
+                <i class="fas fa-gamepad"></i>
+                游戏资源
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card" onclick="unlock('genshin61')">
+                    <div class="tool-icon"><i class="fas fa-dragon"></i></div>
+                    <div class="tool-title">原神</div>
+                    <div class="tool-desc">仅个人娱乐，请勿用于非法行为</div>
+                    <div class="tool-password"><i class="fas fa-lock"></i></div>
+                </div>
+
+                <div class="tool-card" onclick="unlock('hsr37')">
+                    <div class="tool-icon"><i class="fas fa-robot"></i></div>
+                    <div class="tool-title">崩坏：星穹铁道</div>
+                    <div class="tool-desc">仅个人娱乐，请勿用于非法行为</div>
+                    <div class="tool-password"><i class="fas fa-lock"></i></div>
+                </div>
+
+                <div class="tool-card" onclick="unlock('blue_archive')">
+                    <div class="tool-icon"><i class="fas fa-school"></i></div>
+                    <div class="tool-title">蔚蓝档案</div>
+                    <div class="tool-desc">仅个人娱乐，请勿用于非法行为</div>
+                    <div class="tool-password"><i class="fas fa-lock"></i></div>
+                </div>
+
+                <div class="tool-card" onclick="safeOpenLink('https://ys.mihoyo.com/cloud/m/#/')">
+                    <div class="tool-icon"><i class="fas fa-cloud"></i></div>
+                    <div class="tool-title">云·原神</div>
+                    <div class="tool-desc">云端畅玩原神，无需下载</div>
+                </div>
+
+                <div class="tool-card" onclick="safeOpenLink('https://mc.js.cool/')">
+                    <div class="tool-icon"><i class="fas fa-cube"></i></div>
+                    <div class="tool-title">我的世界网页版</div>
+                    <div class="tool-desc">在浏览器中玩我的世界</div>
+                </div>
+
+                <div class="tool-card" onclick="safeOpenLink('https://store.steampowered.com')">
+                    <div class="tool-icon"><i class="fab fa-steam"></i></div>
+                    <div class="tool-title">Steam官网</div>
+                    <div class="tool-desc">全球最大的游戏平台</div>
+                </div>
+            </div>
+
+            <div class="category-title">
+                <i class="fas fa-tools"></i>
+                软件工具
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card" onclick="unlock('resources_share')">
+                    <div class="tool-icon"><i class="fas fa-cloud-download-alt"></i></div>
+                    <div class="tool-title">音黎的免费资源分享</div>
+                    <div class="tool-desc">各类免费资源下载</div>
+                    <div class="tool-password"><i class="fas fa-lock"></i></div>
+                </div>
+
+                <div class="tool-card" onclick="safeOpenLink('https://share.feijipan.com/s/TePL325s')">
+                    <div class="tool-icon"><i class="fab fa-windows"></i></div>
+                    <div class="tool-title">Windows激活教程</div>
+                    <div class="tool-desc">Windows系统激活教程</div>
+                </div>
+
+                <div class="tool-card" onclick="safeOpenLink('https://share.feijipan.com/s/uQPLbBft')">
+                    <div class="tool-icon"><i class="fas fa-tools"></i></div>
+                    <div class="tool-title">其他工具</div>
+                    <div class="tool-desc">仅个人娱乐，请勿用于非法行为</div>
+                </div>
+
+                <div class="tool-card" onclick="safeOpenLink('https://share.feijipan.com/s/AAPL1NSG')">
+                    <div class="tool-icon"><i class="fab fa-tiktok"></i></div>
+                    <div class="tool-title">TikTok测试版</div>
+                    <div class="tool-desc">解除地区限制的TikTok版本</div>
+                </div>
+
+                <div class="tool-card" onclick="safeOpenLink('https://www.123912.com/s/I7DsTd-oYhJ3')">
+                    <div class="tool-icon"><i class="fas fa-walking"></i></div>
+                    <div class="tool-title">微信步数模拟器</div>
+                    <div class="tool-desc">轻松模拟微信运动步数</div>
+                </div>
+            </div>
+
+            <div class="category-title">
+                <i class="fas fa-globe"></i>
+                在线工具
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card" onclick="safeOpenLink('http://24mail.chacuo.net/')">
+                    <div class="tool-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="tool-title">临时邮箱</div>
+                    <div class="tool-desc">生成临时邮箱地址，保护隐私</div>
+                </div>
+
+                <div class="tool-card" onclick="safeOpenLink('https://zuoyinyun.com/tool/id-card')">
+                    <div class="tool-icon"><i class="fas fa-id-card"></i></div>
+                    <div class="tool-title">随机信息生成器</div>
+                    <div class="tool-desc">生成随机信息，保护隐私</div>
+                </div>
+
+                <div class="tool-card" onclick="safeOpenLink('https://lubansms.com')">
+                    <div class="tool-icon"><i class="fas fa-sms"></i></div>
+                    <div class="tool-title">接码平台</div>
+                    <div class="tool-desc">接收虚拟的手机号验证码，保护隐私</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active" data-category="all">
+            <i class="fas fa-home"></i>
+            <span>首页</span>
+        </a>
+        <a href="#" class="nav-item" data-category="game">
+            <i class="fas fa-gamepad"></i>
+            <span>游戏</span>
+        </a>
+        <a href="#" class="nav-item" data-category="software">
+            <i class="fas fa-tools"></i>
+            <span>软件</span>
+        </a>
+        <a href="#" class="nav-item" data-category="online">
+            <i class="fas fa-globe"></i>
+            <span>工具</span>
+        </a>
+    </div>
+
+    <div id="security-warning" style="display: none;">
+        <h1>安全警告</h1>
+        <p>检测到您正在尝试使用开发者工具或进行其他不安全操作。</p>
+        <p>此行为已被记录，请立即停止。</p>
+        <p>如需正常使用本网站，请关闭开发者工具并刷新页面。</p>
+        <button onclick="location.reload()">刷新页面</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
